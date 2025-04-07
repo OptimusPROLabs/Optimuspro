@@ -1,0 +1,28 @@
+.button-slider {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    padding-right: 24px;
+    gap: 20px
+}
+
+@media screen and (max-width:1300px) {
+    .button-slider .next-button, .button-slider .prev-button {
+        position: relative;
+        right: 150px
+    }
+}
+
+@media screen and (max-width:1150px) {
+    .button-slider .next-button, .button-slider .prev-button {
+        position: relative;
+        right: 300px
+    }
+}
+
+@media screen and (max-width:1023px) {
+    .button-slider .next-button, .button-slider .prev-button {
+        position: relative;
+        right: 0
+    }
+}
