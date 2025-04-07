@@ -1,8 +1,12 @@
-# React + Vite
+# Optimus PRO
+### A Startup built for the Community by the Community
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+## Optimus PRO is more than a starup, we're a community-driven collective of passionate indiviuals bound by a shared vision of a fair, secure and transparent Web3 ecosystem.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Key Features
+- Networking Opportunities.
+- Access to latest tech tools, stacks and development frameworks.
+- Fundraising Opportunities for visionary enterpreneurs.
+- Expert mentorship and support.
+- and so many more opportunities.
