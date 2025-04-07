@@ -16,7 +16,8 @@ export default function Navbar() {
     >
       {/* First side */}
       <Link to="/" className="text-[1.5em] font-bold flex gap-x-1 items-center">
-        <img src="/logo.png" alt="" className="w-[170px] sm:w-[220px]" />
+        <img src="/OPTI.png" alt="" className="w-[35px] sm:w-[35px] mr-1" />
+        <h1 className='text-cyan-500'> Optimus PRO</h1>
       </Link>
       {/* Second cover */}
       <div className="flex items-center gap-x-10">

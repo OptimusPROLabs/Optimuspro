@@ -8,15 +8,16 @@ export default function Footer() {
       <div className="flex flex-col w-full max-w-[1228px] max-md:max-w-full">
         <div className="flex gap-5 justify-between items-start pr-1.5 w-full flex-col md:flex-row max-md:max-w-full">
           {/** open */}
-          <div className="flex flex-col gap-4 w-[100%] md:w-[30%]">
+          <div className="flex flex-col gap-4 w-[100%] md:w-[100%]">
             <div className="flex gap-2 self-start text-base text-cyan-500">
-              <img src="/logo.png" className="w-[170px] sm:w-[200px]" />
+              <img src="/OPTI.png" className="w-[35px] sm:w-[35px]" />
+              <h1 className="text-2xl font-bold">Optimus PRO</h1>
             </div>
             <div className="mt-2.5 w-full text-xl leading-8 text-stone-50">
               Optimus PRO is a community-driven Web3 ecosystem that is built on the foundation of trust, security, and transparency. It’s a decentralized space co-built by stake
-              <span className="circle-text">hodlers</span> ✅like you, where every voice matters.
+              <span className="circle-text">hodlers</span> like you, where every voice matters.
             </div>
-            <div className="flex flex-wrap gap-5 mt-2.5">
+            <div className="flex flex-wrap gap-10 mt-2.5">
               {socialData.map((social, index) => (
                 <Link to={social.link} key={index} target="_blank">
                   <social.icon />
