@@ -1,0 +1,210 @@
+@import url(https://fonts.googleapis.com/css2?family=Advent+Pro:ital,wght@0,100..900;1,100..900&display=swap);
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+ 
+
+@font-face {
+  font-family: BoxedRound;
+  src: local("BoxedRound"), url(/fonts/BoxedRound.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+ 
+@font-face {
+  font-family: Calibri;
+  src: local("Calibri"), url(/fonts/Calibri.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: QuanRounded;
+  src: local("QuanRounded"), url(/fonts/Quan-Regular.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal
+}
+
+@font-face {
+  font-family: QuanRounded-SemiLight;
+  src: local("QuanRounded-SemiLight"), url(/fonts/QuanRounded-SemiLight.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Tahoma;
+  src: local("Tahoma"), url(/fonts/tahoma.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal
+}
+
+@font-face {
+  font-family: AdventPro-Bold;
+  src: local("AdventPro-Bold"), url(/fonts/AdventPro-Bold.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal
+}
+
+@font-face {
+  font-family: AdventPro-Regular;
+  src: local("AdventPro-Regular"), url(/fonts/AdventPro-Regular.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal
+}
+
+@font-face {
+  font-family: AdventPro-Medium;
+  src: local("AdventPro-Medium"), url(/fonts/AdventPro-Medium.ttf) format("truetype");
+  font-weight: 100;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Transformer;
+  src: local("TransformersMovie"), url(/fonts/TransformersMovie-y9Ad.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Orbitron;
+  src: local("Orbitron-Regular"), url(/fonts/Orbitron-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Inter-Medium;
+  src: local("Inter-Medium"), url(/fonts/inter/Inter_18pt-Medium.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+@font-face {
+  font-family: Inter-Normal;
+  src: local("Inter-Normal"), url(/fonts/inter/Inter_28pt-Regular.ttf) format("truetype");
+  font-weight: 400;
+  font-style: normal
+}
+
+* {
+  margin: 0;
+  padding: 0
+}
+
+body {
+  background-color: #000;
+  width: 100%;
+  height: 100%;
+  font-family: theme("fontFamily.body")
+}
+
+body, html {
+  overflow-x: hidden
+}
+
+.gradient-background {
+  background: linear-gradient(90deg, #0080ff 12%, #00d9d9 97%)
+}
+
+.custom-container {
+  max-width: 1100px;
+  margin: auto
+}
+
+.gradient-text {
+  background: linear-gradient(90deg, #0080ff 12%, #00d9d9 97%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent
+}
+
+.custom-gradient-background {
+  background-image: 
+    linear-gradient(to right, rgba(255, 255, 255, 0.651), rgba(255, 255, 255, 0.651)), 
+    linear-gradient(90deg, rgba(0, 0, 0, 0.651) 10.5%, rgba(255, 255, 255, 0.651) 26%, rgba(0, 0, 0, 0.651) 41.5%, rgba(0, 0, 0, 0.18) 55%, rgba(255, 255, 255, 0.11) 69.5%, rgba(0, 0, 0, 0.651) 85%, rgba(74, 74, 74, 0.651) 100%);
+}
+
+.gradient-background2{
+  background: linear-gradient(to right, rgb(255, 255, 255), #3498db);
+}
+
+.numberspeak-bg {
+  background-image: url(/letnumberspeak.svg);
+  background-size: cover;
+  background-position: center -100px;
+  background-repeat: no-repeat;
+  height: 100svh
+}
+
+.text-shadow {
+  text-shadow: 0 8px 10px #000
+}
+
+.sub-heading{
+  @apply text-xl font-['Calibri'] font-normal leading-normal
+}
+/* font-['AdventPro-Regular'] */
+.body-text{
+  @apply font-['QuanRounded'] text-2xl font-normal
+}
+  
+.boxed_round_fonts{
+  @apply font-['BoxedRound'] font-bold text-4xl md:text-5xl 
+}
+
+.circle-text {
+  position: relative;
+  display: inline-block;
+  padding: 2px 2px; /* Adjust padding as needed */
+}
+
+.circle-text::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(90deg, #0080ff 12%, #00d9d9 97%);
+  border-radius: 50%;
+  padding: 2px; /* Adjust padding as needed */
+  -webkit-mask: 
+    linear-gradient(#fff 0 0) content-box, 
+    linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+  box-sizing: border-box;
+}
+
+.timelineDate{
+  color: white;
+}
+
+@media screen and (max-width: 1169px) {
+  .timelineDate{
+    color: black;
+  }
+}
+
+/* Custom scrollbar styles */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 10px; /* Width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent; /* Background of the scrollbar track */
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #ffffff; /* Scrollbar color */
+  border-radius: 10px; /* Rounded corners for the scrollbar */
+  border: 2px solid transparent; /* Space around the thumb */
+  background-clip: content-box; /* Keeps the thumb within the box */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background-color: #e4e4e4; /* Color on hover */
+}

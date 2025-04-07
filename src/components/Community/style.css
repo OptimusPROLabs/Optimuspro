@@ -1,0 +1,33 @@
+.hero-slider-img .slick-dots {
+    z-index: 999999 !important;
+    position: relative;
+    top: -100px
+}
+
+@media screen and (max-width:650px) {
+    .hero-slider-img .slick-dots {
+        position: relative;
+        top: -90px
+    }
+}
+
+.hero-slider-img .slick-dots li button {
+    border-radius: 50%;
+    width: 14px;
+    height: 14px;
+    background-color: #595755;
+    opacity: 1
+}
+
+.hero-slider-img .slick-dots li button::before {
+    color: transparent
+}
+
+.hero-slider-img .slick-dots li.slick-active button {
+    background-image: linear-gradient(130.23538645559722deg, rgba(0, 128, 255, 1) 55.42494628353543%, rgba(0, 217, 217, 1) 73.15761965385957%);
+    border-radius: 100%
+}
+
+.hero-slider-img .slick-dots li.slick-active button::before {
+    color: transparent
+}
