@@ -44,7 +44,7 @@ export default function Navbar() {
               <span className="text-black md:text-white">Contact</span>
             </li>
             <li className="hover:text-[#ddd] mb-3 cursor-pointer" onClick={() => goto('/resources')}>
-              <span className="text-black md:text-white">Resorces</span>
+              <span className="text-black md:text-white">Resources</span>
             </li>
           </ul>
           {/* close */}
