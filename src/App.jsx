@@ -7,8 +7,9 @@ import Home from "./pages/Home";
 import Footer from "./components/Footer";
 import Community from "./pages/Community";
 import Blog from "./pages/Blog";
-import ScrollToTop from "./components/scrollToTop"
+import ScrollToTop from "./components/scrollToTop";
 import PostDetails from "./pages/PostDetails";
+import Resources from "./pages/Resources";
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
           <Route path="/company" element={<Company />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/aboutus" element={<About />} />
+          <Route path="/resources" element={<Resources />} />
           <Route path="/blog/:slug" element={<PostDetails />} />
           <Route path="*" element={"NOT FOUND"} />
         </Routes>
