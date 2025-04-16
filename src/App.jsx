@@ -21,11 +21,11 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/community" element={<Community />} />
+          <Route path="/resources" element={<Resources />} />
           <Route path="/blog" element={<Blog />} />
           <Route path="/company" element={<Company />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/aboutus" element={<About />} />
-          <Route path="/resources" element={<Resources />} />
           <Route path="/blog/:slug" element={<PostDetails />} />
           <Route path="*" element={"NOT FOUND"} />
         </Routes>
