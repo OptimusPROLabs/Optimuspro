@@ -34,6 +34,9 @@ export default function Navbar() {
             <li className="hover:text-[#ddd] mb-3 cursor-pointer" onClick={() => goto('/community')}>
               <span className="text-black md:text-white">Community</span>
             </li>
+            <li className="hover:text-[#ddd] mb-3 cursor-pointer" onClick={() => goto('/resources')}>
+              <span className="text-black md:text-white">Resources</span>
+            </li>
             <li className="hover:text-[#ddd] mb-3 cursor-pointer" onClick={() => goto('/blog')}>
               <span className="text-black md:text-white">Blog</span>
             </li>
@@ -42,9 +45,6 @@ export default function Navbar() {
             </li>
             <li className="hover:text-[#ddd] mb-3 cursor-pointer" onClick={() => goto('/contact')}>
               <span className="text-black md:text-white">Contact</span>
-            </li>
-            <li className="hover:text-[#ddd] mb-3 cursor-pointer" onClick={() => goto('/resources')}>
-              <span className="text-black md:text-white">Resources</span>
             </li>
           </ul>
           {/* close */}
