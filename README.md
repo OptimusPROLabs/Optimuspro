@@ -2,7 +2,7 @@
 ### A Startup built for the Community by the Community
 
 
-## Optimus PRO is more than a starup, we're a community-driven collective of passionate indiviuals bound by a shared vision of a fair, secure and transparent Web3 ecosystem.
+## Optimus PRO is more than a startup, we're a community-driven collective of passionate indiviuals bound by a shared vision of a fair, secure and transparent Web3 ecosystem.
 
 ## Key Features
 - Networking Opportunities.
