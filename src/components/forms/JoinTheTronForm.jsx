@@ -8,8 +8,15 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import {
+  useForm,
+  ValidationError
+} from '@formspree/react';
 
-export default function JoinTheTronForm() {
+function JoinTheTronForm() {
+
+  const [state, handleSubmit] = useForm("mqaqkgvr");
+
   const initialState = {
     name: '',
     city: '',
@@ -26,7 +33,7 @@ export default function JoinTheTronForm() {
     telegramUsername: validationRules.telegramUsername
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -52,6 +59,10 @@ export default function JoinTheTronForm() {
     }
   };
 
+  if(state.succeeded){
+    return <SubmitButton onSubmit={handleForm} />
+  }
+
   return (
     <div>
       <ToastContainer />
@@ -61,13 +72,33 @@ export default function JoinTheTronForm() {
       </h2>
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Sign up to get updates on our upcoming in-person meetups near you.</p>
       <form className="space-y-2" onSubmit={handleSubmit}>
-      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" error={errors.name} />
+      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" />
+      <ValidationError
+        prefix='Text'
+        field='text'
+        error={state.errors}
+        />
 
-        <InputField label="City" type="text" placeholder="Enter your city" icon={FiMapPin} value={formData.city} onChange={handleChange} name="city" error={errors.city} />
+        <InputField label="City" type="text" placeholder="Enter your city" icon={FiMapPin} value={formData.city} onChange={handleChange} name="city" />
+        <ValidationError
+        prefix='Text'
+        field='text'
+        error={state.errors}
+        />
 
-        <InputField label="Country" type="text" placeholder="Enter your country" icon={FiGlobe} value={formData.country} onChange={handleChange} name="country" error={errors.country} />
+        <InputField label="Country" type="text" placeholder="Enter your country" icon={FiGlobe} value={formData.country} onChange={handleChange} name="country"/>
+        <ValidationError
+        prefix='Text'
+        field='text'
+        error={state.errors}
+        />
 
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" />
+        <ValidationError
+        prefix='Email'
+        field='email'
+        error={state.errors}
+        />
 
         <InputField
           label="Telegram Username"
@@ -77,7 +108,11 @@ export default function JoinTheTronForm() {
           value={formData.telegramUsername}
           onChange={handleChange}
           name="telegramUsername"
-          error={errors.telegramUsername}
+        />
+        <ValidationError
+        prefix='TelegramUsername'
+        field='telegramUsername'
+        error={state.errors}
         />
         <div className="w-full pt-5">
           <SubmitButton label="Keep Me Updated" loading={loading} />
@@ -86,3 +121,11 @@ export default function JoinTheTronForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <JoinTheTronForm />
+  )
+}
+
+export default App;

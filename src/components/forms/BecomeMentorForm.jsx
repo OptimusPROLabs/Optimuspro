@@ -6,7 +6,7 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
-import { useForm, ValidationError} from '@formspree/react'
+import { useForm, ValidationError} from '@formspree/react';
 
 function BecomeMentorForm() {
   
@@ -49,8 +49,12 @@ function BecomeMentorForm() {
   };
 
   if (state.succeeded){
-    return  <SubmitButton onClick={handleForm} />;
-  };
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
 
   return (
     <div>

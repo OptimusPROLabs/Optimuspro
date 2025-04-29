@@ -6,8 +6,12 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import { useForm, ValidationError } from '@formspree/react';
 
-export default function IwantInForm() {
+function IwantInForm() {
+
+  const [state, handleSubmit] = useForm("xwpokwdr");
+
   const initialState = {
     email: '',
     linkedinProfile: ''
@@ -18,7 +22,7 @@ export default function IwantInForm() {
     linkedinProfile: validationRules.linkedinProfile
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -44,6 +48,14 @@ export default function IwantInForm() {
     }
   };
 
+  if (state.succeeded){
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
+
   return (
     <div>
       <ToastContainer />
@@ -51,7 +63,12 @@ export default function IwantInForm() {
       <h2 className="text-center font-['BoxedRound'] text-3xl">I Want in</h2>
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Join our waitlist for exclusive updates on investment opportunities and events.</p>
       <form className="space-y-2" onSubmit={handleSubmit}>
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email"  />
+          <ValidationError 
+          prefix='Email'
+          field='email'
+          error={state.errors}
+          />
 
         <InputField
           label="LinkedIn Profile"
@@ -63,6 +80,11 @@ export default function IwantInForm() {
           name="linkedinProfile"
           error={errors.linkedinProfile}
         />
+        <ValidationError
+        prefix='linkedinProfile'
+        field='linkedinProfile'
+        error={state.error}
+        />
         <div className="w-full pt-5">
           <SubmitButton label="Notify Me" loading={loading} />
         </div>
@@ -70,3 +92,11 @@ export default function IwantInForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <IwantInForm />
+  )
+}
+
+export default App;

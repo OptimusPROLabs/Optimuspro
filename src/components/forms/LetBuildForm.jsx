@@ -7,9 +7,13 @@ import useFormValidation from '../hooks/useFormValidation';
 import validationRules from '../utils/validationRules';
 import InputField from '../custom/InputField';
 import SubmitButton from '../custom/SubmitButton';
+import { useForm, ValidationError } from '@formspree/react';
 
-export default function LetBuildForm() {
-  const initialState = {
+function LetBuildForm() {
+
+  const [state, handleSubmit ] = useForm("mldbeoqr");
+
+  const initialState = { 
     email: '',
     telegramUsername: '',
     linkedinProfile: ''
@@ -21,7 +25,7 @@ export default function LetBuildForm() {
     linkedinProfile: validationRules.linkedinProfile
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -46,6 +50,10 @@ export default function LetBuildForm() {
       setLoading(false);
     }
   };
+
+  if(state.succeeded){
+    return <SubmitButton onSubmit={handleForm} />
+  }
  
   return (
     <div>
@@ -56,7 +64,12 @@ export default function LetBuildForm() {
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Founders, join the waitlist for exclusive updates on co-building opportunities, events, and networking.</p>
 
       <form className="space-y-2" onSubmit={handleSubmit}>
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email"  />
+        <ValidationError
+      prefix='Email'
+      field='email'
+      error={state.errors}
+      />
 
         <InputField
           label="Telegram Username"
@@ -68,6 +81,11 @@ export default function LetBuildForm() {
           name="telegramUsername"
           error={errors.telegramUsername}
         />
+         <ValidationError
+      prefix='TelegramUsername'
+      field='telegramUsername'
+      error={state.errors}
+      />
 
         <InputField
           label="LinkedIn Profile"
@@ -79,6 +97,11 @@ export default function LetBuildForm() {
           name="linkedinProfile"
           error={errors.linkedinProfile}
         />
+         <ValidationError
+      prefix='LinkedinProfile'
+      field='linkedinProfile'
+      error={state.errors}
+      />
 
         <div className="w-full pt-5">
           <SubmitButton label="Let's Build" loading={loading} />
@@ -87,3 +110,11 @@ export default function LetBuildForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <LetBuildForm />
+  )
+}
+
+export default App;

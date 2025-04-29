@@ -52,7 +52,11 @@ function EventForm() {
   };
 
   if (state.succeeded){
-    return <SubmitButton onSubmit={handleForm} />
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
   }
 
   return (
