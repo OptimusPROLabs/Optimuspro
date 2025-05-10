@@ -7,8 +7,13 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import { useForm, ValidationError } from '@formspree/react';
 
-export default function HeckathonForm() {
+
+function HeckathonForm() {
+
+  const [state, handleSubmit] = useForm("mndqoyw");
+
   const initialState = {
     name: '',
     email: '',
@@ -21,7 +26,7 @@ export default function HeckathonForm() {
     telegramUsername: validationRules.telegramUsername
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -47,6 +52,14 @@ export default function HeckathonForm() {
     }
   };
 
+  if (state.succeeded){
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
+
   return (
     <div>
       <ToastContainer />
@@ -57,9 +70,18 @@ export default function HeckathonForm() {
       <h2 className="text-center font-['BoxedRound'] text-lg mt-2">Get Ready to Hack!</h2>
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Join the waitlist to be first in line for our upcoming Hackathon, with exclusive updates and early access!</p>
       <form className="space-y-2" onSubmit={handleSubmit}>
-      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" error={errors.name} />
-
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" />
+      <ValidationError 
+        prefix='Text'
+        field='text'
+        error={state.errors}
+      />
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" />
+        <ValidationError
+          prefix='Email'
+          field='email'
+          error={state.errors}
+         />
 
         <InputField
           label="Telegram Username"
@@ -69,7 +91,11 @@ export default function HeckathonForm() {
           value={formData.telegramUsername}
           onChange={handleChange}
           name="telegramUsername"
-          error={errors.telegramUsername}
+        />
+        <ValidationError 
+          prefix='telegramUsername'
+          field='telegramUsername'
+          error={state.errors}
         />
         <div className="w-full pt-5">
           <SubmitButton label="Count Me In" loading={loading} />
@@ -78,3 +104,11 @@ export default function HeckathonForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <HeckathonForm />
+  )
+}
+
+export default App;

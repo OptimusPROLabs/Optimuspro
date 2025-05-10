@@ -6,20 +6,24 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import { useForm, ValidationError} from '@formspree/react';
 
-export default function BecomeMentorForm() {
+function BecomeMentorForm() {
+  
+  const [state, handleSubmit] = useForm("mvgappnd");
+
   const initialState = {
     email: '',
-    linkedinProfile: ''
+    linkedinProfile: '',
   };
 
-  const { formData, errors, loading, setLoading, handleChange, validateForm, resetForm } = useFormValidation(initialState, {
+  const { formData, errors, loading, setLoading, handleChange, validateForm, resetForm } = useFormValidation(initialState,{
     email: validationRules.email,
     linkedinProfile: validationRules.linkedinProfile
   });
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+  const handleForm = async e => {
+    preventDefault(e);
 
     if (!validateForm()) {
       return;
@@ -43,15 +47,28 @@ export default function BecomeMentorForm() {
       setLoading(false);
     }
   };
+
+  if (state.succeeded){
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
+
   return (
     <div>
       <ToastContainer />
-
       <h2 className="text-center font-['BoxedRound'] text-3xl">Become a Mentor</h2>
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Join our waitlist to share your expertise and guide the next generation of innovators.</p>
-      <form className="space-y-2" onSubmit={handleSubmit}>
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+    <form className="space-y-2" onSubmit={handleSubmit}>
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" />
 
+        <ValidationError 
+          prefix="Email"
+          field ="text"
+          error={state.errors}
+        />
         <InputField
           label="LinkedIn Profile"
           type="url"
@@ -60,13 +77,25 @@ export default function BecomeMentorForm() {
           value={formData.linkedinProfile}
           onChange={handleChange}
           name="linkedinProfile"
-          error={errors.linkedinProfile}
+          error={state.errors}
         />
-
+        <ValidationError 
+          prefix="LinkedinProfile"
+          field ="linkedinProfile"
+          error={state.errors}
+        />
         <div className="w-full pt-5">
-          <SubmitButton label="Sign Me Up" loading={loading} />
+          <SubmitButton label="Sign Me Up"  loading={loading}  />
         </div>
       </form>
     </div>
   );
 }
+
+function App(){
+  return(
+    <BecomeMentorForm />
+  )
+}
+
+export default App;

@@ -52,5 +52,5 @@ export default function useFormValidation(initialState, validationRules) {
     setErrors(Object.keys(initialState).reduce((acc, key) => ({ ...acc, [key]: '' }), {}));
   }, [initialState]);
 
-  return { formData, errors, loading, setLoading, handleChange, validateForm, resetForm, setFormData };
+  return { formData, errors, loading, setLoading, handleChange, validateForm, resetForm, setFormData,};
 }
