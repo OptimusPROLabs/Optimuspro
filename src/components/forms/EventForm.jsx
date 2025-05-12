@@ -7,8 +7,12 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import { useForm, ValidationError } from '@formspree/react';
 
-export default function EventForm() {
+function EventForm() {
+  const [state, handleSubmit] = useForm("xjkwbkly");
+
+  
   const initialState = {
     name: '',
     email: '',
@@ -21,7 +25,7 @@ export default function EventForm() {
     telegramUsername: validationRules.telegramUsername
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -47,6 +51,14 @@ export default function EventForm() {
     }
   };
 
+  if (state.succeeded){
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
+
   return (
     <div>
       <ToastContainer />
@@ -58,10 +70,18 @@ export default function EventForm() {
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Join our waitlist to be the first to know about upcoming events, dates, and exclusive perks!</p>
 
       <form className="space-y-2" onSubmit={handleSubmit}>
-      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" error={errors.name} />
-
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
-
+      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" />
+      <ValidationError
+        prefix='Text'
+        field='text'
+        error={state.errors}
+      />
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" />
+        <ValidationError
+          prefix='Email'
+          field='email'
+          error={state.errors}
+        />
         <InputField
           label="Telegram Username"
           type="text"
@@ -70,7 +90,11 @@ export default function EventForm() {
           value={formData.telegramUsername}
           onChange={handleChange}
           name="telegramUsername"
-          error={errors.telegramUsername}
+        />
+        <ValidationError
+          prefix='telegramUsername'
+          field='telegramUsername'
+          error={state.errors}
         />
         <div className="w-full pt-5">
           <SubmitButton label="Sign Me Up" loading={loading} />
@@ -79,3 +103,11 @@ export default function EventForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <EventForm />
+  )
+}
+
+export default App;

@@ -1,5 +1,10 @@
+import { useForm, ValidationError } from '@formspree/react';
 
 export default function ContactForm() {
+
+  const [state, handleSubmit] = useForm("meogqpye");
+
+  
   return (
     <div className="flex justify-center items-center flex-col mt-44 relative px-2 md:px-0">
       <div className="absolute right-0 top-14 w-[50%] h-[50%] rounded-full bg-[#006DD9] bg-opacity-[17%] blur-[60px]"></div>
@@ -28,15 +33,25 @@ export default function ContactForm() {
               placeholder="Full Name"
               className="text-white text-start bg-transparent outline-none border-none w-[100%]"
             />
+            <ValidationError
+            prefix='Text'
+            field='text'
+             error={state.errors}
+            />
           </div>
           {/** input two */}
           <div className="bg-[#212121] bg-opacity-[100%] rounded-full p-3 px-4 flex items-center gap-2">
             <img src="/contactemailicon.png" className="h-5" alt="" />
             <input
-              type="text"
+              type="email"
               placeholder="Email"
               className="text-white text-start bg-transparent outline-none border-none w-[100%]"
             />
+            <ValidationError
+            prefix='Email'
+            field='email'
+            error={state.errors}
+         />
           </div>
           {/** input three */}
           <div className="bg-[#212121] bg-opacity-[100%] rounded-full p-3 px-4 flex items-center gap-2">
@@ -46,6 +61,11 @@ export default function ContactForm() {
               placeholder="Subject"
               className="text-white text-start bg-transparent outline-none border-none w-[100%]"
             />
+            <ValidationError
+         prefix='Text'
+         field='text'
+         error={state.errors}
+         />
           </div>
           {/** input four */}
           <div className="bg-[#212121] bg-opacity-[100%] rounded-lg p-1 flex gap-1">
@@ -55,6 +75,11 @@ export default function ContactForm() {
               id=""
               className="text-white resize-none text-start bg-transparent outline-none border-none w-[100%] h-32 p-3 px-4"
             ></textarea>
+            <ValidationError
+         prefix='Text'
+         field='Text'
+         error={state.errors}
+         />
           </div>
           <div className="flex items-center justify-center">
             <button className="gradient-background text-center rounded-[10px] text-white p-3 px-5">Send Message</button>

@@ -8,8 +8,12 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import { useForm, ValidationError } from '@formspree/react';
 
-export default function ExploreOurProgramForm() {
+function ExploreOurProgramForm() {
+
+  const [state, handleSubmit] = useForm("xpwdzogr"); 
+
   const initialState = {
     name: '',
     city: '',
@@ -26,7 +30,7 @@ export default function ExploreOurProgramForm() {
     telegramUsername: validationRules.telegramUsername
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -52,6 +56,13 @@ export default function ExploreOurProgramForm() {
     }
   };
 
+  if (state.succeeded){
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
   return (
     <div>
       <ToastContainer />
@@ -59,13 +70,32 @@ export default function ExploreOurProgramForm() {
       <h2 className="text-center font-['BoxedRound'] w-full text-3xl">Get Onboard!</h2>
       <p className="text-gray-700 text-center !text-lg mt-3 sub-heading mb-4">Sign up for updates on our upcoming programs and get the opportunity to be one of the first to be onboarded.</p>
       <form className="space-y-2" onSubmit={handleSubmit}>
-      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" error={errors.name} />
+      <InputField label="Name" type="text" placeholder="Enter your name" icon={HiUser} value={formData.name} onChange={handleChange} name="name" />
+      <ValidationError
+      prefix='Text'
+      field='text'
+      error={state.errors}
+      />
+        <InputField label="City" type="text" placeholder="Enter your city" icon={FiMapPin} value={formData.city} onChange={handleChange} name="city" />
+        <ValidationError
+        prefix='Text'
+        field='text'
+        error={state.errors}
+        />
 
-        <InputField label="City" type="text" placeholder="Enter your city" icon={FiMapPin} value={formData.city} onChange={handleChange} name="city" error={errors.city} />
-
-        <InputField label="Country" type="text" placeholder="Enter your country" icon={FiGlobe} value={formData.country} onChange={handleChange} name="country" error={errors.country} />
+        <InputField label="Country" type="text" placeholder="Enter your country" icon={FiGlobe} value={formData.country} onChange={handleChange} name="country"  />
+        <ValidationError
+        prefix='Text'
+        field='text'
+        error={state.errors}
+        />
 
         <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+        <ValidationError
+        prefix='Email'
+        field='email'
+        error={state.errors}
+        />
 
         <InputField
           label="Telegram Username"
@@ -77,6 +107,11 @@ export default function ExploreOurProgramForm() {
           name="telegramUsername"
           error={errors.telegramUsername}
         />
+        <ValidationError
+        prefix='TelegramUsername'
+        field='telegramUsername'
+        error={state.errors}
+        />
         <div className="w-full pt-5">
           <SubmitButton label="Keep Me Updated" loading={loading} />
         </div>
@@ -84,3 +119,11 @@ export default function ExploreOurProgramForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <ExploreOurProgramForm />
+  )
+}
+
+export default App;

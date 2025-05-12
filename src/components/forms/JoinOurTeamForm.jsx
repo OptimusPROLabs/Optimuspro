@@ -7,8 +7,12 @@ import validationRules from '../utils/validationRules';
 import useFormValidation from '../hooks/useFormValidation';
 import ToastNotification from '../../components/hooks/ToastNotification'; // Import reusable Toast component
 import { ToastContainer } from 'react-toastify';
+import { useForm, ValidationError } from '@formspree/react';
 
-export default function JoinOurTeamForm() {
+function JoinOurTeamForm() {
+
+  const [state, handleSubmit] = useForm("xdkgoprv");
+  
   const initialState = {
     email: '',
     telegramUsername: '',
@@ -23,7 +27,7 @@ export default function JoinOurTeamForm() {
     twitterUsername: validationRules.twitterUsername
   });
 
-  const handleSubmit = async e => {
+  const handleForm = async e => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -49,6 +53,14 @@ export default function JoinOurTeamForm() {
     }
   };
 
+  if (state.succeeded){
+    return (
+      <div>
+        <p> Your Submission has been recieved </p> <SubmitButton onSubmit={handleForm} />
+      </div>
+    ) 
+  }
+
   return (
     <div>
       <ToastContainer />
@@ -58,7 +70,12 @@ export default function JoinOurTeamForm() {
         At <b>Optimus PRO</b>, we are looking at building a <b>rock-solid</b> team of <b>“A-players”</b>. Think you're a right fit? Join the waitlist. ✅
       </p>
       <form className="space-y-2" onSubmit={handleSubmit}>
-        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" error={errors.email} />
+        <InputField label="Email" type="email" placeholder="Enter email address" icon={MdEmail} value={formData.email} onChange={handleChange} name="email" />
+        <ValidationError
+         prefix='Email'
+         field='email'
+         error={state.errors}
+         />
 
         <InputField
           label="Telegram Username"
@@ -70,7 +87,11 @@ export default function JoinOurTeamForm() {
           name="telegramUsername"
           error={errors.telegramUsername}
         />
-
+        <ValidationError
+        prefix='telegramUsername'
+        field='telegramUsername'
+        error={state.errors}
+        />
         <InputField
           label="LinkedIn Profile"
           type="url"
@@ -81,7 +102,11 @@ export default function JoinOurTeamForm() {
           name="linkedinProfile"
           error={errors.linkedinProfile}
         />
-
+        <ValidationError
+        prefix='linkedinProfile'
+        field='linkedinProfile'
+        error={state.errors}
+        />
         <InputField
           label="X (Formerly Twitter) Username"
           type="text"
@@ -92,7 +117,11 @@ export default function JoinOurTeamForm() {
           name="twitterUsername"
           error={errors.twitterUsername}
         />
-
+        <ValidationError
+        prefix='twitterUsername'
+        field='twitterusername'
+        error={state.errors}
+        />
         <div className="w-full pt-5">
           <SubmitButton label="Count Me In" loading={loading} />
         </div>
@@ -100,3 +129,11 @@ export default function JoinOurTeamForm() {
     </div>
   );
 }
+
+function App(){
+  return(
+    <JoinOurTeamForm />
+  )
+}
+
+export default App;
