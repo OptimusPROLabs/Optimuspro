@@ -19,7 +19,7 @@ export default function Community() {
   const handleCloseIwantInForm = () => setIsIwantInFormOpen(false);
 
   return (
-    <div className="px-4 lg:px-10 py-20 lg:py-0 flex flex-col justify-center items-center relative rounded-3xl">
+    <div className="mt-[200px] sm:mt-[50px] px-4 lg:px-10 py-20 lg:py-0 flex flex-col justify-center items-center relative rounded-3xl">
       {/* Blur*/}
       <div className="blur-[120px] rounded-[100px] bg-[rgba(0,109,217,0.21)] rotate-[-75deg] absolute right-[196.5px] bottom-[-90.7px] w-[980.4px] h-[837.7px]"></div>
       <div className="flex justify-center relative z-10 items-center w-full md:px-5 max-md:max-w-full">
