@@ -37,7 +37,7 @@ export default function Navbar() {
                 <div className="absolute inset-0 bg-cyan-500/20 blur-xl rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
               <span className="text-xl font-bold bg-gradient-to-r from-cyan-400 to-blue-500 bg-clip-text text-transparent">
-                Optimus PRO
+                {/* Optimus PRO */}
               </span>
             </Link>
 
